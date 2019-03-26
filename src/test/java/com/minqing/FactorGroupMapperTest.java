@@ -1,6 +1,7 @@
 package com.minqing;
 
 import com.minqing.mappers.FactorGroupMapper;
+import com.minqing.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,24 +19,11 @@ import java.util.Map;
 public class FactorGroupMapperTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private FactorGroupMapper factorGroupMapper;
-
+    //private FactorGroupMapper factorGroupMapper;
+    private GroupService groupService;
     @org.testng.annotations.Test
-    public void getFactor(){
-        String name="1";
-        List<Map> groups = factorGroupMapper.findListByNameIfAbsent(name);
-        log.info("这个数据是：：：："+groups.toString());
-
-//        if (CollectionUtils.isEmpty(groups)) {
-//            return null;
-//        }
-
-        StringBuilder sb = new StringBuilder();
-        for (Map map : groups) {
-            sb.append(map.get("name")).append(", ");
-        }
-
-//        return sb.toString();
+    public void getFactor() {
+        log.info(groupService.getFactor("1"));
     }
 
 }
