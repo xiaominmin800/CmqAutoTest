@@ -1,13 +1,20 @@
 package com.minqing;
 
-import com.minqing.mappers.FactorGroupMapper;
+
+import com.cmq.HttpClientUtil;
+import com.cmq.HttpResponse;
 import com.minqing.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.*;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,7 +29,10 @@ public class FactorGroupMapperTest extends AbstractTestNGSpringContextTests {
     //private FactorGroupMapper factorGroupMapper;
     private GroupService groupService;
     @org.testng.annotations.Test
-    public void getFactor() {
+    public void getFactor() throws Exception {
+        HttpClientUtil httpUtils = new HttpClientUtil();
+        HttpResponse hre = httpUtils.httpGet("http://47.97.171.60:30026/eaglehorn-risk-data/api/v1/node/1" , null, null, null);
+        log.info(hre.getBody());
         log.info(groupService.getFactor("1"));
     }
 
