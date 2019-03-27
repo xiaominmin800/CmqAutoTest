@@ -1,5 +1,7 @@
 package com.minqing;
 
+import com.cmq.HttpClientUtil;
+import com.cmq.HttpResponse;
 import com.minqing.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,12 @@ public class FactorGroupMapperTest extends AbstractTestNGSpringContextTests {
     private GroupService groupService;
     @org.testng.annotations.Test
     public void getFactor() throws Exception {
-        com.cmq.HttpClientUtil httpUtils = new com.cmq.HttpClientUtil();
-        com.cmq.HttpResponse hre = httpUtils.httpGet("http://47.97.171.60:30026/eaglehorn-risk-data/api/v1/node/1" , null, null, null);
+        HttpClientUtil httpUtils = new HttpClientUtil();
+        HttpResponse hre = httpUtils.httpGet("http://47.97.171.60:30026/eaglehorn-risk-data/api/v1/node/1" , null, null, null);
         log.info(hre.getBody());
         log.info(groupService.getFactor("1"));
     }
 
 
-    }
+
+}
